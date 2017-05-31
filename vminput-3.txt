@@ -1,0 +1,28 @@
+7 0 1   # jump to main
+6 0 4   # increment sp for activation record
+1 0 1   # push 1 onto stack, stack[sp] = 1
+1 0 2   # push 2 onto stack, stack[sp] = 2
+2 0 2   # add, stack[sp] = 3
+2 0 1   # negate, stack[sp] = -3
+1 0 5   # push 5 onto stack, sp[sp] = 5
+2 0 3   # sub, stack[sp] = -8
+1 0 -2  # push -2 onto stack, stack[sp] = -2
+2 0 5   # div, stack[sp] = -8 / -2 = 4
+1 0 2   # push 2 onto stack, stack[sp] = 2
+2 0 4   # mul, stack[sp] = 8
+1 0 7   # push 7 onto stack, stack[sp] = 7
+2 0 7   # mod, stack[sp] = 8 % 7 = 1
+2 0 6   # odd, stack[sp] = 1 (1 is odd)
+1 0 1   # push 1 onto stack, stack[sp] = 1
+2 0 8   # eql, stack[sp] = 1, (1 == 1)
+1 0 1   # push 1 onto stack, stack[sp] = 1
+2 0 9   # neq, stack[sp] = 0, !(1 != 1)
+1 0 1   # push 1 onto stack, stack[sp] = 1
+2 0 10  # lss, stack[sp] = 1, (0 < 1)
+1 0 1   # push 1 onto stack, stack[sp] = 1
+2 0 11  # leq, stack[sp] = 1, (1 <= 1)
+1 0 1   # push 1 onto stack, stack[sp] = 1
+2 0 12  # gtr, stack[sp] = 0, !(1 < 1)
+1 0 0   # push 1 onto stack, stack[sp] = 0
+2 0 13  # geq, stack[sp] = 1, (0 >= 0)
+9 0 3   # exit program
