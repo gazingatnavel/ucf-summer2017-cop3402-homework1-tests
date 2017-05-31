@@ -9,8 +9,8 @@
 
 # Make sure that there is an argument.
 if [[ $# < 1 ]]; then
-	echo "Usage: $0 <source code file>"
-	exit 1
+    echo "Usage: $0 <source code file>"
+    exit 1
 fi
 
 # Attempt to find source input file (argument to script). If found, set
@@ -18,7 +18,7 @@ fi
 # executable will have the same name as the source file, less the file 
 # extension.
 if [ -a $1 ]; then
-	executable=${1%.c}
+    executable=${1%.c}
 else
     echo "Unable to find source file '$1'"
     exit 1
@@ -26,9 +26,9 @@ fi
 
 # Set output file name, if given as argument, default otherwise.
 if [[ $# > 1 ]]; then
-	output_file=$2
+    output_file=$2
 else
-	output_file="vmoutput.txt"
+    output_file="vmoutput.txt"
 fi
 
 # Compile input source file into executable.
@@ -40,12 +40,12 @@ if [[ $? != 0 ]]; then
     echo "fail (failed to compile)"
     exit 1
 else
-	echo "ok"
+    echo "ok"
 fi
 
 # Temporarily rename file vminput.txt if it exists.
 if [ -a "vminput.txt" ]; then
-	mv vminput.txt vminput-temp.txt
+    mv vminput.txt vminput-temp.txt
 fi
 
 # Loop for input files...
@@ -62,27 +62,27 @@ do
     if [[ $i == 5 ]]; then
     	printf '7\n' | ./$executable > /dev/null 2> /dev/null
     else
-		# Run the executable.
-		./$executable > /dev/null 2> /dev/null
+        # Run the executable.
+        ./$executable > /dev/null 2> /dev/null
     fi
     
-	if [[ $? != 0 ]]; then
-		echo "fail (program crashed)"
+    if [[ $? != 0 ]]; then
+	echo "fail (program crashed)"
+	
+        # Rename file vminput-temp.txt if it exists.
+        if [ -a "vminput-temp.txt" ]; then
+            mv vminput-temp.txt vminput.txt
+        fi
 		
-		# Rename file vminput-temp.txt if it exists.
-		if [ -a "vminput-temp.txt" ]; then
-			mv vminput-temp.txt vminput.txt
-		fi
-		
-		# Rename the input file back to original name.
-		mv vminput.txt vminput-$i.txt 2> /dev/null
+        # Rename the input file back to original name.
+        mv vminput.txt vminput-$i.txt 2> /dev/null
 
-		# Remove output file, if it exists.
-		if [ -a $output_file ]; then
-			rm $output_file 2> /dev/null
-		fi
+        # Remove output file, if it exists.
+        if [ -a $output_file ]; then
+            rm $output_file 2> /dev/null
+        fi
 
-		exit 1
+        exit 1
     fi
     
     # Compare the computed output file to the exepected output file,
@@ -106,7 +106,7 @@ done
 
 # Rename file vminput-temp.txt if it exists.
 if [ -a "vminput-temp.txt" ]; then
-	mv vminput-temp.txt vminput.txt
+    mv vminput-temp.txt vminput.txt
 fi
 
 exit 0
