@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script is modeled on similar scripts provided by Dr. Sean Szumlanski 
+# for COP 3503 Fall 2016 at UCF.
+
 # Variable '$#' is the number of arguments to the script.
 # Variable '$?' is the exit status of a command.
 # Variable '$1' is the first argument to script.
