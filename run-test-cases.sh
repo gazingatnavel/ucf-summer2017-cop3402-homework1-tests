@@ -84,7 +84,7 @@ do
     
     # Compare the computed output file to the exepected output file,
     # ignoring blank lines.
-    diff -wB $output_file vmoutput-$i.txt > /dev/null 2> /dev/null
+    diff -iwB $output_file vmoutput-$i.txt > /dev/null 2> /dev/null
 
     # Print status, fail or pass.
     if [[ $? != 0 ]]; then
