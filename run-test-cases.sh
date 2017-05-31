@@ -101,7 +101,7 @@ do
 
     # Remove output file.
     rm $output_file 2> /dev/null
-
+    
 done
 
 # Rename file vminput-temp.txt if it exists.
