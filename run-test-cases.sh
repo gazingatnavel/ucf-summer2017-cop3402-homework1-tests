@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# This script is modeled on similar scripts provided by Dr. Sean Szumlanski 
-# for COP 3503 Fall 2016 at UCF.
-
 # Variable '$#' is the number of arguments to the script.
 # Variable '$?' is the exit status of a command.
 # Variable '$1' is the first argument to script.
@@ -49,7 +46,7 @@ if [ -a "vminput.txt" ]; then
 fi
 
 # Loop for input files...
-for i in `seq 1 5`;
+for i in `seq 1 6`;
 do
     # Provide some feedback.
     echo -n "Checking vminput-$i.txt... "
@@ -61,19 +58,21 @@ do
     # Provide input for read instruction in vminput-5.txt and run executable.
     if [[ $i == 5 ]]; then
     	printf '7\n' | ./$executable > /dev/null 2> /dev/null
+    elif [[ $i == 6 ]]; then
+        printf '3\n' | ./$executable > /dev/null 2> /dev/null
     else
         # Run the executable.
         ./$executable > /dev/null 2> /dev/null
     fi
     
     if [[ $? != 0 ]]; then
-	echo "fail (program crashed)"
-	
+        echo "fail (program crashed)"
+
         # Rename file vminput-temp.txt if it exists.
         if [ -a "vminput-temp.txt" ]; then
             mv vminput-temp.txt vminput.txt
         fi
-		
+
         # Rename the input file back to original name.
         mv vminput.txt vminput-$i.txt 2> /dev/null
 
@@ -86,7 +85,7 @@ do
     fi
     
     # Compare the computed output file to the exepected output file,
-    # ignoring letter case, amount of whitespace, and blank lines.
+    # ignoring, letter case, amount of whitespace, and blank lines.
     diff -ibB $output_file vmoutput-$i.txt > /dev/null 2> /dev/null
 
     # Print status, fail or pass.
@@ -101,7 +100,7 @@ do
 
     # Remove output file.
     rm $output_file 2> /dev/null
-    
+
 done
 
 # Rename file vminput-temp.txt if it exists.
